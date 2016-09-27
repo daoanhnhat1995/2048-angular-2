@@ -16,7 +16,7 @@ import { GameService } from './services/game.service';
 		GridComponent,
 		TileComponent
 	],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent]
 })
 
 export class AppModule { }
