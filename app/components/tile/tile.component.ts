@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-
+import { Component, Input } from '@angular/core';
+import { Tile } from './tile';
 @Component({
 	moduleId: module.id,
 	selector: 'Tile',
 	templateUrl: 'tile.component.html'
 })
 
-export class TileComponent { }
+export class TileComponent {
+	@Input() tile: Tile;
+ }
