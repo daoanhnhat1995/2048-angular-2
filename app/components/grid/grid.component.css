@@ -1,2 +1,14 @@
 .grid-container{
+    width: 480px;
+    height: 480px;
+    background-color: rgb(187, 173, 160);
+    border-radius: 3%;
+    padding-left:15px;
 }
+
+.grid-cell {
+     background-color:rgba(238, 228, 218, 0.34902);
+}
+
+/*grid background color: #bbada0;
+    empty tile color: rgba(	238, 228, 218, .35);*/
