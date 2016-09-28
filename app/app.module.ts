@@ -13,8 +13,8 @@ import { GameService } from './services/game.service';
   imports: [ BrowserModule ],
   declarations: [ 
 		AppComponent,
-		GridComponent,
-		TileComponent
+    GridComponent,
+    TileComponent
 	],
   bootstrap: [ AppComponent]
 })
