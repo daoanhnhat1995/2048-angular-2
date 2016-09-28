@@ -1,0 +1,52 @@
+.tile{
+    height: 100px; 
+    width: 100px;
+    display: inline-block;
+    border-radius: 3%;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.tile-2{
+    background-color: rgb( 238,228,218)
+}
+
+.tile-4{
+    background-color: rgb(237,224,200)
+}
+
+.tile-8{
+    background-color: rgb(242,177,121);
+}
+
+.tile-16{
+    background-color: rgb(245,149,99);
+}
+
+.tile-32{
+    background-color: rgb(246,124,95);
+}
+
+.tile-64{
+    background-color: rgb(246,94,59)
+}
+
+.tile-128{
+    background-color: rgb(237,207,114);
+}
+
+.tile-256{
+    background-color: rgb(237,204,97)
+}
+
+.tile-512{
+    background-color: rgb(237,200,80)
+}
+
+.tile-1024{
+    background-color: rgb(237,197,63)
+}
+
+.tile-2048{
+    background-color: rgb(237,194,46)
+}
