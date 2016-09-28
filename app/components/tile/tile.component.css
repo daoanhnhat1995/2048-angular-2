@@ -6,6 +6,11 @@
     margin-top: 15px;
     margin-right: 15px;
 }
+.tileContent{
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 55px;
+    font-weight: bold;
+}
 
 .tile-2{
     background-color: rgb( 238,228,218)
