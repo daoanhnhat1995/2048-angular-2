@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Tile } from './tile';
 
 @Component({
 	moduleId: module.id,
@@ -7,6 +8,19 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['tile.component.css']
 })
 
-export class TileComponent { 
-	@Input() tileColor:string;
+export class TileComponent implements OnInit{ 
+	@Input() tile:Tile;
+	fontSize:string="ja";
+
+	ngOnInit(){
+		if(this.tile.val.toString().length < 3){
+			this.fontSize = "55px";
+		}
+		else if(this.tile.val.toString().length == 3){
+			this.fontSize = "45px"
+		}
+		else if(this.tile.val.toString().length == 4){
+			this.fontSize = "35px"
+		}
+	}
 }

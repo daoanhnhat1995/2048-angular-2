@@ -2,6 +2,42 @@
     "version": "0.2.0",
     "configurations": [
         {
+<<<<<<< HEAD
+            "name": "C++ Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceRoot}/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": true,
+            "linux": {
+                "MIMode": "gdb"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+            "windows": {
+                "MIMode": "gdb"
+            }
+        },
+        {
+            "name": "C++ Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "enter program name, for example ${workspaceRoot}/a.out",
+            "processId": "${command.pickProcess}",
+            "linux": {
+                "MIMode": "gdb"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            },
+            "windows": {
+                "MIMode": "gdb"
+            }
+=======
             "name": "Launch",
             "type": "node",
             "request": "launch",
@@ -41,6 +77,7 @@
             "port": 5858,
             "sourceMaps": false,
             "outDir": null
+>>>>>>> 15f6f1bf8085170c538b8415d7273dbb109135d7
         }
     ]
 }
