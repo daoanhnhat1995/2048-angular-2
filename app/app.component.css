@@ -1,3 +1,13 @@
+.body {
+	background-color: #faf8ef;
+	padding: 10em 10em;
+}
 .heading {
-	background-color: #000;
+}
+.color-dark-brown{
+	color: #776e65;
+}
+
+.grid-container {
+	background-color: blue;
 }

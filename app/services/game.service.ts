@@ -8,9 +8,10 @@ export class GameService {
 	public isGameOver: Observable<boolean>;
 	public isWinner: Observable<boolean>;
 
-	constructor() { }
+	constructor() {
+	}
 
 	newGame(): void {
-		console.log("new Game " + this.dummy);
+		console.log("new Game " + typeof this.isWinner);
 	}
 }
