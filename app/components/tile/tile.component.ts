@@ -7,7 +7,6 @@ import { Tile } from './tile';
 	templateUrl: 'tile.component.html',
 	styleUrls: ['tile.component.css']
 })
-
 export class TileComponent implements OnInit{ 
 	@Input() tile:Tile;
 	fontSize:string="ja";
