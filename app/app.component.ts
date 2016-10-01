@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { GameService } from './services/game.service';
-import { Game } from './game';
-
+import { GridService } from './services/grid.service';
 @Component({
 	moduleId: module.id,
   	selector: 'my-app',
   	templateUrl: 'app.component.html',
 	styleUrls: ['app.component.css'],
-	providers: [GameService]
+	providers: [GridService, GameService ]
 })
 
 export class AppComponent { 
-	public currentGame: Game;
 	constructor(private game: GameService) {
 		this.createNewGame();
 	}
@@ -19,7 +17,13 @@ export class AppComponent {
 	public createNewGame(): void {
 		console.log("Starting new game....!");
 		this.game.newGame();
-		this.currentGame = this.game.getCurrentGame();
+	}
+	public insertRandomValue(): void {
+		console.log("Clicked");
+		this.game.setVal();
+	}
+	public createSampleBoard(): void {
+		this.game.buildSample();
 	}
 	
 	

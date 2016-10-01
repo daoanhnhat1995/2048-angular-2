@@ -40,7 +40,7 @@ class h {
     }
 
     public static processUpArrow(): void {
-        alert("left was clicked");
+        alert("up was clicked");
     }
 
     public static processRightArrow(): void {
@@ -48,6 +48,6 @@ class h {
     }
 
     public static processDownArrow(): void {
-        alert("right was clicked");
+        alert("down was clicked");
     }
 }

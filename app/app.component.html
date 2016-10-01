@@ -3,10 +3,10 @@
 		<h1 class="color-dark-brown"> 2048 </h1>
 		<div class="status-container">
 			<div class="current-score-container">
-				Current score : {{currentGame.currentScore}}
+				Current score : {{game.currentScore}}
 			</div>
 			<div class="best-score-container">
-				Best score : {{currentGame.bestScore}}
+				Best score : {{game.bestScore}}
 			</div>
 		</div>
 	</div>
@@ -14,6 +14,8 @@
 		Join the numbers and get to the 2048 tile!  
 		
 		<button (click)="createNewGame()" class="new-game-btn"> New Game </button>
+		<button (click)="insertRandomValue()" class="btn btn-primary"> Random Insert </button>
+		<button (click)="createSampleBoard()" class="btn btn-primary"> Seed Board </button>
 	</div> 
-	<Grid> </Grid>
+	<Grid [tiles]="game.tiles"> </Grid>
 </div>
