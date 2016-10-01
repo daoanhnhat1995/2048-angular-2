@@ -18,6 +18,10 @@
     line-height: 100px;
 }
 
+.tile-0{
+    background-color: rgba(238, 228, 218, 0.34902);
+}
+
 .tile-2{
     background-color: rgb( 238,228,218)
 }
