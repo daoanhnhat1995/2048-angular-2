@@ -35,10 +35,15 @@ export class GameService {
 			const randIndex : number = Math.floor(Math.random()*emptyList.length);
 			const randTile : Tile = emptyList[randIndex]; 
 			this.gService.setTileAt(randTile.x,randTile.y,2);
+			this.updateScore(2);
 		} else {
-			throw new Error("Board is full, u lose");
+			//throw new Error("Board is full, u lose");
 		}
 		
+	}
+	updateScore(newVal : number){
+		this.currentScore += newVal;
+		this.bestScore = Math.max(this.currentScore, this.bestScore);
 	}
 
 }
