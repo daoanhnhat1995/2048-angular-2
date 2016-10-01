@@ -1,5 +1,10 @@
 import * as console from 'console';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,
+	trigger,
+	state,
+	style,
+	transition,
+	animate } from '@angular/core';
 import { Tile } from '../../models/tile';
 import { GameControllerService } from "../../services/gamecontroller.service"
 
