@@ -19,12 +19,7 @@
     /*line height(only if used with px) helps vertical alignment without flexbox*/
     line-height: 100px;
 }
-/*left = (x * 115)
-    right=(y * 115)
-*/
-.tile-0{
-    /*background-color: rgba(238, 228, 218, 0.34902);*/
-}
+
 
 .tile-2{
     background-color: rgb( 238,228,218)
