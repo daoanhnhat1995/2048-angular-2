@@ -1,6 +1,9 @@
 {
   "name": "angular2-2048",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.7.0"
+  },
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
