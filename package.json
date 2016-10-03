@@ -7,6 +7,7 @@
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
+    "postinstall": "node node_modules/lite-server/bin/lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
