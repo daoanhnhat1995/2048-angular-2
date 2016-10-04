@@ -4,3 +4,6 @@ app/**/*.map
 node_modules
 jspm_packages
 bower_components
+.DS_store
+/**/.DS_store
+npm-debug.log
