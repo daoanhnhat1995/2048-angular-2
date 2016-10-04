@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { GridService } from './grid.service';
-import { Tile } from '../models/tile';
+import { Tile } from '../tile';
 @Injectable()
 export class GameService {
 	//public currentScore: Observable<number>;

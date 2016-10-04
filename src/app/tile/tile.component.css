@@ -1,23 +1,23 @@
 .tile{
-    height: 100px; 
-    width: 100px;
+    height: 50px; 
+    width: 50px;
     border-radius: 3%;
     margin-top: 15px;
     margin-left: 15px;
     display: inline-flex; 
     background-color: rgba(238, 228, 218, 0.34902);
-    position:absolute;
+    position:relative;
 }
 .tileContent{
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-weight: bold;
     height:100px;
     width:100px;
-    position:absolute;
+    position:relative;
     text-align:center;
 
     /*line height(only if used with px) helps vertical alignment without flexbox*/
-    line-height: 100px;
+    line-height: 50px;
 }
 
 

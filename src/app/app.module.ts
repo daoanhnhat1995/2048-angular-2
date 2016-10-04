@@ -8,15 +8,13 @@ import { TileComponent } from './tile/tile.component';
 
 // Import Services
 import { GameService } from './services/game.service';
-import { FirstComComponent } from './first-com/first-com.component';
 
 @NgModule({
   imports: [ BrowserModule ],
   declarations: [ 
 		AppComponent,
     GridComponent,
-    TileComponent,
-    FirstComComponent
+    TileComponent
 	],
   entryComponents: [AppComponent],
   bootstrap: [ AppComponent]
