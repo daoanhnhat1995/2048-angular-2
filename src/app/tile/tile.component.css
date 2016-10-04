@@ -1,6 +1,6 @@
 .tile{
-    height: 50px; 
-    width: 50px;
+    height: 100px; 
+    width: 100px;
     border-radius: 3%;
     margin-top: 15px;
     margin-left: 15px;
@@ -9,15 +9,14 @@
     position:relative;
 }
 .tileContent{
-    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-weight: bold;
     height:100px;
     width:100px;
-    position:relative;
+    position:absolute;
     text-align:center;
 
     /*line height(only if used with px) helps vertical alignment without flexbox*/
-    line-height: 50px;
+    /*line-height: 50px; */
 }
 
 

@@ -1,11 +1,9 @@
 .grid-container{
-    width: 460px;
-    height: 480px;
+    width: 475px;
+    height: 490px;
     background-color: rgb(187, 173, 160);
     border-radius: 3%;
-    padding-left:15px;
     position: relative;
-    
 }
 
 /*.grid-cell {
