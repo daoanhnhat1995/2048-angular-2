@@ -8,11 +8,10 @@ import {
 	transition,
 	animate
 } from '@angular/core';
-import { Tile } from '../../models/tile';
+import { Tile } from '../tile';
 
 @Component({
-	moduleId: module.id,
-	selector: 'Tile',
+	selector: 'tile',
 	templateUrl: 'tile.component.html',
 	styleUrls: ['tile.component.css'],
 	animations: [

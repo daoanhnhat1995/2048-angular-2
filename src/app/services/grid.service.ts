@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Tile } from '../models/tile';
+import { Tile } from './../tile';
 @Injectable()
 export class GridService {
     public tiles: Tile[];
