@@ -1,7 +1,4 @@
 import {
-	constructDependencies
-} from 'c:/Users/madthad91/My Software/Projects/2048-angular-2/node_modules/@angular/core/src/di/reflective_provider';
-import {
 	Component,
 	Input,
 	OnInit,
