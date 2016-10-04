@@ -29,36 +29,36 @@ h1.text-title {
     text-align:right;
 }
 
+
+
+.current-score-container, .best-score-container {
+    position: relative;
+    display: inline-block;
+    background: #bbada0;
+    padding: 15px 25px;
+    font-size: 20px;
+    height: 55px;
+    line-height: 45px;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    margin-top: 8px;
+    text-align: center;
+}
 .current-score-container::after{
     content: "SCORE"
 }
 .best-score-container::after{
     content: "BEST"
 }
-
-.current-score-container {
-    display: inline-block;
-    background-color:#bbada0;
-    padding: 15px 25px;
-    font-size: 25px;
-    height: 50px;
-    line-height: 20px;
-    font-weight: bold;
-    border-radius: 3px;
-    color: white;
-    margin-top: 8px;
+.current-score-container::after, .best-score-container::after {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
     text-align: center;
-}
-.best-score-container {
-     display: inline-block;
-    background-color:#bbada0;
-    padding: 15px 25px;
-    font-size: 25px;
-    height: 50px;
-    line-height: 20px;
-    font-weight: bold;
-    border-radius: 3px;
-    color: white;
-    margin-top: 8px;
-    text-align: center;
+    color: #eee4da;
 }
