@@ -1,21 +1,21 @@
-<div class="container">
-	<div class="heading">
-		<h1 class="color-dark-brown"> 2048 thad was here2 </h1>
+<div class="page-container">
+	<div class="heading-container">
+		<h1 class="text-title color-dark-brown"> 2048 </h1>
 		<div class="status-container">
 			<div class="current-score-container">
-				Current score : {{game.currentScore}}
+				{{game.currentScore}} 
 			</div>
 			<div class="best-score-container">
-				Best score : {{game.bestScore}}
+				{{game.bestScore}} 
 			</div>
 		</div>
 	</div>
 	<div class="intro-container">
-		Join the numbers and get to the 2048 tile!  
+		<p> Join the numbers and get to the 2048 tile!  </p>
 		
 		<button (click)="createNewGame()" class="new-game-btn"> New Game </button>
 		<button (click)="insertRandomValue()" class="btn btn-primary"> Random Insert </button>
 		<button (click)="createSampleBoard()" class="btn btn-primary"> Seed Board </button>
 	</div> 
-	<Grid [tiles]="game.tiles"> </Grid>
+	<grid [tiles]="game.tiles"> </grid>
 </div>

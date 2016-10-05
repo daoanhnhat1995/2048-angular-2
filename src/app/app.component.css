@@ -1,0 +1,64 @@
+.body {
+	background-color: #faf8ef;
+    color: #776e65;
+    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+}
+
+.color-dark-brown{
+	color: #776e65;
+}
+
+.page-container {
+    margin:0px auto;
+    width: 475px;
+}
+.heading-container {
+    height: 100px;
+}
+
+h1.text-title {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+    display: block;
+    float: left;
+}
+.status-container{
+    float: right;
+    text-align:right;
+}
+
+
+
+.current-score-container, .best-score-container {
+    position: relative;
+    display: inline-block;
+    background: #bbada0;
+    padding: 15px 25px;
+    font-size: 20px;
+    height: 55px;
+    line-height: 45px;
+    font-weight: bold;
+    border-radius: 3px;
+    color: white;
+    margin-top: 8px;
+    text-align: center;
+}
+.current-score-container::after{
+    content: "SCORE"
+}
+.best-score-container::after{
+    content: "BEST"
+}
+.current-score-container::after, .best-score-container::after {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #eee4da;
+}
