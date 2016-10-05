@@ -31,7 +31,17 @@
     }
   ],
   "addons": [],
-  "packages": [],
+  "packages": [{
+     "@ngrx/core": {
+            "main": "index.js",
+            "format": "cjs"
+        },
+        "@ngrx/store": {
+            "main": "index.js",
+            "format": "cjs"
+        }
+  }
+  ],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
