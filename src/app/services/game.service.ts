@@ -1,40 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 import { GridService } from './grid.service';
-import { Tile } from '../tile';
+import { ITile } from './../interfaces/ITile';
+import { IGame } from './../interfaces/IGame';
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class GameService {
-	//public currentScore: Observable<number>;
-	//public bestScore: Observable<number>;
-	//public isGameOver: Observable<boolean>;
-	//spublic isWinner: Observable<boolean>;
-	public tiles: Tile[];
-	public currentScore: number;
-	public bestScore: number;
+	public tiles: Observable<ITile[]>;
+	public currentScore: Observable<number>;
+	public bestScore: Observable<number>;
 
-	constructor(private gService: GridService) {
-		this.newGame();
+	constructor(
+		private _gService: GridService,
+		private _store: Store<any>
+		) {
+		this._loadGame();
+	}
+	private _loadGame(): void {
+		
+		const store$ = this._store.select<IGame>('game');
+		this.currentScore = store$.map(({currentScore}: IGame) => currentScore);
+		this.bestScore = store$.map(({bestScore} : IGame) => bestScore );
+		this.tiles = store$.map(({tiles}: IGame) => tiles);
 	}
 
-	newGame(): void {
-		this.currentScore = 0;
-		this.bestScore = 100;
-		this.gService.buildEmptyBoard();
-		this.tiles = this.gService.tiles;
+	public newGame(): void {
+		this._gService.buildEmptyBoard();
+		this._store.dispatch({type: 'NEW_GAME', payload: {tiles : this._gService.tiles}});
 	}
 	buildSample(): void {
-		this.gService.buildSampleBoard();
-		this.tiles = this.gService.tiles;
+		this._gService.buildSampleBoard();
 	}
 	setVal(){
 		let x : number = Math.floor(Math.random()*4) + 1;
 		let y : number = Math.floor(Math.random()*4) + 1;
 		console.log(x,y);
-		const emptyList = this.gService.emptyCells();
+		const emptyList = this._gService.emptyCells();
 		if (emptyList.length != 0){
 			const randIndex : number = Math.floor(Math.random()*emptyList.length);
-			const randTile : Tile = emptyList[randIndex]; 
-			this.gService.setTileAt(randTile.x,randTile.y,2);
+			const randTile : ITile = emptyList[randIndex]; 
+			this._gService.setTileAt(randTile.x,randTile.y,2);
 			this.updateScore(2);
 		} else {
 			//throw new Error("Board is full, u lose");
@@ -42,8 +49,7 @@ export class GameService {
 		
 	}
 	updateScore(newVal : number){
-		this.currentScore += newVal;
-		this.bestScore = Math.max(this.currentScore, this.bestScore);
+		this._store.dispatch({type: 'UPDATE_SCORE', payload: { newVal: 2 }});
 	}
 
 }

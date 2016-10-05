@@ -3,10 +3,10 @@
 		<h1 class="text-title color-dark-brown"> 2048 </h1>
 		<div class="status-container">
 			<div class="current-score-container">
-				{{game.currentScore}} 
+				{{game.currentScore | async}} 
 			</div>
 			<div class="best-score-container">
-				{{game.bestScore}} 
+				{{game.bestScore | async }} 
 			</div>
 		</div>
 	</div>
@@ -17,5 +17,5 @@
 		<button (click)="insertRandomValue()" class="btn btn-primary"> Random Insert </button>
 		<button (click)="createSampleBoard()" class="btn btn-primary"> Seed Board </button>
 	</div> 
-	<grid [tiles]="game.tiles"> </grid>
+	<grid [tiles]="game.tiles | async"> </grid>
 </div>
