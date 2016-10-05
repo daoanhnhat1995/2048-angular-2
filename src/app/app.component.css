@@ -62,3 +62,13 @@ h1.text-title {
     text-align: center;
     color: #eee4da;
 }
+
+.btn-new-game {
+    float: right;
+}
+.intro-text {
+    float: left;
+}
+.intro-container {
+    height: 60px;
+}
