@@ -71,6 +71,11 @@ export class GridService {
                     const tmp = this.tiles[right].val;
                     this.tiles[right].setVal(0);
                     this.tiles[merge].setVal(tmp);
+                     alert(tmp)
+                    alert(left)
+                    alert(right)
+                    alert(merge)
+                    alert(base)
                     break;
                 }
                 const leftVal = this.tiles[left].val;
@@ -117,6 +122,11 @@ export class GridService {
                     const tmp = this.tiles[left].val;
                     this.tiles[left].setVal(0);
                     this.tiles[merge].setVal(tmp);
+                    alert(tmp)
+                    alert(left)
+                    alert(right)
+                    alert(merge)
+                    alert(base)
                     break;
                 }
                 const leftVal = this.tiles[left].val;
