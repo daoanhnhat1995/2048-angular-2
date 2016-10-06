@@ -9,18 +9,16 @@ import {
 	animate
 } from '@angular/core';
 import { Tile } from '../tile';
+import {GameControllerService} from '../services/gamecontroller.service';
 
 @Component({
 	selector: 'tile',
 	templateUrl: 'tile.component.html',
 	styleUrls: ['tile.component.css'],
 	animations: [
-		trigger('movementSlides', [
-			state('tile10', style({ top:0,left:115 })),
-			state('tile21', style({ top:115,left:230 })),
-			state('tile31', style({ top:115,left:345 })),
-			transition('* => *', animate('.25s'))
-		]),
+		trigger('movementSlides', 
+		GameControllerService.makeAnimations()
+		),
 		trigger('enterAnimation', [
 			state('in', style({ transform: 'scale(1,1)' })),
 			transition('void => *', [
@@ -47,6 +45,7 @@ export class TileComponent implements OnInit {
 	@Input() tile: Tile;
 	fontSize: string = "ja";
 	shown: string;
+	animatedState: string = "tile12";
 
 	constructor() {
 	}
@@ -60,12 +59,5 @@ export class TileComponent implements OnInit {
 		else if (this.tile.val.toString().length == 4) {
 			this.fontSize = "35px"
 		}
-	}
-
-	toggleState(): void {
-		if (this.shown != "tile21")
-			this.shown = "tile21";
-		else
-			this.shown = "tile31"
 	}
 }

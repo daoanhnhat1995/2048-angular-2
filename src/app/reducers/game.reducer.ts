@@ -1,4 +1,4 @@
-import { Action, Reducer } from '@ngrx/store';
+import { Action, ActionReducer } from '@ngrx/store';
 import { IGame } from './../interfaces/IGame';
 import { ITile } from './../interfaces/ITile';
 
@@ -21,7 +21,7 @@ let updateScore = (state: IGame, newVal: number) => {
     let newScore: number = newVal + state.currentScore;
     return Object.assign({}, state, { currentScore: newScore});
 };
-export const gameReducer: Reducer<any> = (state = initialState, action: Action) => {
+export const gameReducer: ActionReducer<any> = (state = initialState, action: Action) => {
    switch(action.type){
        case 'NEW_GAME':
             return newGame(state, action.payload.tiles);

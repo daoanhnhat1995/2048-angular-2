@@ -7,9 +7,13 @@ var Tile = (function () {
     Tile.prototype.setColor = function () {
         this.color = this.val != null ? "tile-" + this.val : "empty-tile";
     };
+    Tile.prototype.setAnimation = function () {
+        this.animatedState = 'tile12';
+    };
     Tile.prototype.setVal = function (newVal) {
         this.val = newVal;
         this.setColor(); // match color with new value;
+        this.setAnimation();
     };
     return Tile;
 }());

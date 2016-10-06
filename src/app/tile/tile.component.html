@@ -1,3 +1,6 @@
-<span  [style.left]="tile.x * 115" [style.top]="tile.y * 115" class="tile {{tile.color}}" [@movementSlides]="shown" @enterAnimation  (click)="toggleState()">
+<span  
+    class="tile {{tile.color}}" 
+    [@movementSlides]="animatedState" 
+    @enterAnimation>
     <span class="tileContent" [style.font-size]="fontSize">{{tile.val > 0  ? tile.val : ""}}</span>
 </span>
