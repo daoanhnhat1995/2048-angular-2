@@ -43,6 +43,10 @@ export class GameService {
 			this._gService.moveLeft();
 		} else if ( key == "RIGHT"){
 			this._gService.moveRight();
+		} else if ( key == "UP"){
+			this._gService.moveUp();
+		} else if ( key == "DOWN"){
+			this._gService.moveDown();
 		}
 		if (this._gService.getEmptyCells().length){
 			this._gService.fillRandom();

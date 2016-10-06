@@ -48,7 +48,96 @@ export class GridService {
         this.setTileAt(emptyList[randPos].x,emptyList[randPos].y, 2);
     }
 
+    public moveDown(): void {
+        for (let i = 0; i < 4; i++){
+            let top = i;
+            let bottom = i + 12;
+            let merge = bottom;
+            while ( top < bottom && bottom >= i){
+                while (bottom >= i && !this.tiles[bottom].val){
+                    bottom -= 4;
+                }
+                if (bottom < i){
+                    break;
+                }
+                top = bottom - 4;
+                while ( top >=i && !this.tiles[top].val){
+                    top -= 4;
+                }
+                if ( top < i ) {
+                    const tmpVal = this.tiles[bottom].val;
+                    this.tiles[bottom].setVal(0);
+                    this.tiles[merge].setVal(tmpVal);
+                    break;
+                }
+                const topVal = this.tiles[top].val;
+                const botVal = this.tiles[bottom].val;
+                if ( topVal == botVal ){
+                    this.tiles[top].setVal(0);
+                    this.tiles[bottom].setVal(0);
+                    this.tiles[merge].setVal(2*botVal);
+                    merge -= 4;
+                    bottom = top - 4;
+                    top = bottom - 4;
+                } else {
+                    this.tiles[bottom].setVal(0);
+                    this.tiles[merge].setVal(botVal);
+                    bottom = top;
+                    top = bottom -4;
+                    merge -= 4;
+                }
+            }
+        }
+    }
 
+    public moveUp(): void {
+        /** 
+         *  [1 ,2 ,3 , 4 ,
+         *   5, 6, 7, 8, 
+         *   9, 10, 11, 12, 
+         *   13, 14 , 15, 16 ]
+         */
+        for (let i = 0; i < 4; i++){
+            let top = i;
+            let bottom = i + 12;
+            let merge = top;
+            while ( top < bottom && top <= i + 12){
+                while (top <= i+12 && !this.tiles[top].val){
+                    top += 4;
+                }
+                if (top > i + 12) break;
+                bottom = top + 4;
+                while ( bottom <= i + 12 && !this.tiles[bottom].val){
+                    bottom += 4;
+                }
+                if ( bottom > i + 12){
+                    const tmp = this.tiles[top].val;
+                    this.tiles[top].setVal(0);
+                    this.tiles[merge].setVal(tmp);
+                    break;
+                }
+                const topVal = this.tiles[top].val;
+                const botVal = this.tiles[bottom].val;
+                if ( topVal == botVal ){
+                    this.tiles[top].setVal(0);
+                    this.tiles[bottom].setVal(0);
+                    this.tiles[merge].setVal(topVal*2);
+                    top = bottom +4;
+                    bottom = top + 4;
+                    merge += 4;
+                } else {
+                    this.tiles[top].setVal(0);
+                    this.tiles[merge].setVal(topVal);
+                    top = bottom;
+                    bottom = top+ 4;
+                    merge += 4;
+                }
+
+            }
+        }
+    }
+
+    
     public moveRight(): void {
         for (let i=0; i < 4; i++){
             const base = i*4;
@@ -71,11 +160,6 @@ export class GridService {
                     const tmp = this.tiles[right].val;
                     this.tiles[right].setVal(0);
                     this.tiles[merge].setVal(tmp);
-                     alert(tmp)
-                    alert(left)
-                    alert(right)
-                    alert(merge)
-                    alert(base)
                     break;
                 }
                 const leftVal = this.tiles[left].val;
@@ -122,11 +206,6 @@ export class GridService {
                     const tmp = this.tiles[left].val;
                     this.tiles[left].setVal(0);
                     this.tiles[merge].setVal(tmp);
-                    alert(tmp)
-                    alert(left)
-                    alert(right)
-                    alert(merge)
-                    alert(base)
                     break;
                 }
                 const leftVal = this.tiles[left].val;
