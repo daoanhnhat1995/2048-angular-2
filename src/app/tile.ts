@@ -14,4 +14,5 @@ export class Tile {
         this.val = newVal;
         this.setColor(); // match color with new value;
     }
+    
 }

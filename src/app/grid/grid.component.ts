@@ -1,6 +1,6 @@
 import {
 	Component,
-	OnInit,
+	
 	Input,
 	trigger,
 	state,
@@ -18,16 +18,10 @@ import { GameControllerService } from "../services/gamecontroller.service"
 	providers: [GameControllerService]
 
 })
-export class GridComponent implements OnInit {
+export class GridComponent {
 	@Input() tiles: Tile[];
 
 	constructor() { }
 	// Create empty board
-	ngOnInit(): void {
-		GameControllerService.attachController();
-	}
-
-	ngOnDestroy() {
-		GameControllerService.detachController();
-	}
+	
 }

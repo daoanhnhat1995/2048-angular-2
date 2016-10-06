@@ -11,11 +11,9 @@
 		</div>
 	</div>
 	<div class="intro-container">
-		<p> Join the numbers and get to the 2048 tile!  </p>
+		<p class="intro-text"> Join the numbers and get to the 2048 tile!  </p>
 		
-		<button (click)="createNewGame()" class="new-game-btn"> New Game </button>
-		<button (click)="insertRandomValue()" class="btn btn-primary"> Random Insert </button>
-		<button (click)="createSampleBoard()" class="btn btn-primary"> Seed Board </button>
+		<button (click)="createNewGame()" class="btn btn-primary btn-new-game"> New Game </button>
 	</div> 
 	<grid [tiles]="game.tiles | async"> </grid>
 </div>

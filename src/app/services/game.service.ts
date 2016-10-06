@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { GridService } from './grid.service';
 import { ITile } from './../interfaces/ITile';
 import { IGame } from './../interfaces/IGame';
+import { DIRECTIONS } from './../enums/directions';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class GameService {
 	public tiles: Observable<ITile[]>;
 	public currentScore: Observable<number>;
 	public bestScore: Observable<number>;
+	public isGameOver: Observable<boolean>;
 
 	constructor(
 		private _gService: GridService,
@@ -26,30 +28,25 @@ export class GameService {
 		this.tiles = store$.map(({tiles}: IGame) => tiles);
 	}
 
-	public newGame(): void {
+	newGame(): void {
 		this._gService.buildEmptyBoard();
+		this._gService.initBoard();
 		this._store.dispatch({type: 'NEW_GAME', payload: {tiles : this._gService.tiles}});
 	}
-	buildSample(): void {
-		this._gService.buildSampleBoard();
-	}
-	setVal(){
-		let x : number = Math.floor(Math.random()*4) + 1;
-		let y : number = Math.floor(Math.random()*4) + 1;
-		console.log(x,y);
-		const emptyList = this._gService.emptyCells();
-		if (emptyList.length != 0){
-			const randIndex : number = Math.floor(Math.random()*emptyList.length);
-			const randTile : ITile = emptyList[randIndex]; 
-			this._gService.setTileAt(randTile.x,randTile.y,2);
-			this.updateScore(2);
-		} else {
-			//throw new Error("Board is full, u lose");
-		}
-		
-	}
+	
 	updateScore(newVal : number){
 		this._store.dispatch({type: 'UPDATE_SCORE', payload: { newVal: 2 }});
+	}
+	merge(key: string): void{
+
+		if(key == "LEFT"){
+			this._gService.moveLeft();
+		} else if ( key == "RIGHT"){
+			this._gService.moveRight();
+		}
+		if (this._gService.getEmptyCells().length){
+			this._gService.fillRandom();
+		}
 	}
 
 }
