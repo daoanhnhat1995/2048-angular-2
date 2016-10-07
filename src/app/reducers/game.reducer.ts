@@ -10,14 +10,22 @@ let initialState: IGame ={
   tiles: []
 };
 
-let newGame = (state: IGame, newTiles: ITile[]) =>{
+let addScore = (state: IGame, score: number): IGame => {
+    return Object.assign({}, state, {
+        currentScore: state.currentScore + score,
+        bestScore: Math.max(state.currentScore + score,state.bestScore)
+    });
+};
+
+
+let newGame = (state: IGame, newTiles: ITile[]): IGame =>{
     return Object.assign({}, state, { 
         tiles: newTiles, 
         bestScore: Math.max(state.bestScore, state.currentScore),
         currentScore: 0
     });
 };
-let updateScore = (state: IGame, newVal: number) => {
+let updateScore = (state: IGame, newVal: number): IGame => {
     let newScore: number = newVal + state.currentScore;
     return Object.assign({}, state, { currentScore: newScore});
 };
@@ -27,6 +35,8 @@ export const gameReducer: ActionReducer<any> = (state = initialState, action: Ac
             return newGame(state, action.payload.tiles);
        case 'UPDATE_SCORE':
             return updateScore(state,action.payload.newVal);
+       case 'ADD_SCORE':
+            return addScore(state,action.payload.score);
         default:
             return state;
 

@@ -48,7 +48,9 @@ export class GridService {
         this.setTileAt(emptyList[randPos].x,emptyList[randPos].y, 2);
     }
 
-    public moveDown(): void {
+
+    public moveDown(): number {
+        let score = 0;
         for (let i = 0; i < 4; i++){
             let top = i;
             let bottom = i + 12;
@@ -76,6 +78,7 @@ export class GridService {
                     this.tiles[top].setVal(0);
                     this.tiles[bottom].setVal(0);
                     this.tiles[merge].setVal(2*botVal);
+                    score += botVal*2;
                     merge -= 4;
                     bottom = top - 4;
                     top = bottom - 4;
@@ -88,15 +91,17 @@ export class GridService {
                 }
             }
         }
+        return score;
     }
 
-    public moveUp(): void {
+    public moveUp(): number {
         /** 
          *  [1 ,2 ,3 , 4 ,
          *   5, 6, 7, 8, 
          *   9, 10, 11, 12, 
          *   13, 14 , 15, 16 ]
          */
+        let score = 0;
         for (let i = 0; i < 4; i++){
             let top = i;
             let bottom = i + 12;
@@ -124,6 +129,7 @@ export class GridService {
                     this.tiles[merge].setVal(topVal*2);
                     top = bottom +4;
                     bottom = top + 4;
+                    score += topVal * 2;
                     merge += 4;
                 } else {
                     this.tiles[top].setVal(0);
@@ -135,10 +141,12 @@ export class GridService {
 
             }
         }
+        return score;
     }
 
     
-    public moveRight(): void {
+    public moveRight(): number {
+        let score = 0;
         for (let i=0; i < 4; i++){
             const base = i*4;
             let right = base + 3;
@@ -168,6 +176,7 @@ export class GridService {
                     this.tiles[left].setVal(0);
                     this.tiles[right].setVal(0);
                     this.tiles[merge].setVal(2*leftVal);
+                    score += leftVal*2;
                     right = left-1;
                     left = right-1;
                     merge--;
@@ -181,9 +190,11 @@ export class GridService {
             }
             
         }
+        return score;
     }
-    public moveLeft(): void {
+    public moveLeft(): number {
         //Iterate rows
+        let score = 0;
         for (let i=0; i < 4; i++){
             // Iterate columns
             const base = i*4;
@@ -215,6 +226,7 @@ export class GridService {
                     this.tiles[left].setVal(0);
                     this.tiles[right].setVal(0);
                     this.tiles[merge].setVal( 2 * leftVal);
+                    score += leftVal*2;
                     left = right + 1;
                     right = left + 1;
                     merge ++;
@@ -227,6 +239,7 @@ export class GridService {
                 }
             }
         }
+        return score;
     }
 
     

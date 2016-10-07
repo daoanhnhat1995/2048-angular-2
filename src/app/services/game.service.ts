@@ -38,15 +38,18 @@ export class GameService {
 		this._store.dispatch({type: 'UPDATE_SCORE', payload: { newVal: 2 }});
 	}
 	merge(key: string): void{
-
+		let score = 0;
 		if(key == "LEFT"){
-			this._gService.moveLeft();
+			score = this._gService.moveLeft();
 		} else if ( key == "RIGHT"){
-			this._gService.moveRight();
+			score = this._gService.moveRight();
 		} else if ( key == "UP"){
-			this._gService.moveUp();
+			score = this._gService.moveUp();
 		} else if ( key == "DOWN"){
-			this._gService.moveDown();
+			score = this._gService.moveDown();
+		}
+		if (score){
+			this._store.dispatch({type: 'ADD_SCORE', payload: {score: score}});
 		}
 		if (this._gService.getEmptyCells().length){
 			this._gService.fillRandom();
