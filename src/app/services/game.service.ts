@@ -47,6 +47,8 @@ export class GameService {
 			score = this._gService.moveUp();
 		} else if ( key == "DOWN"){
 			score = this._gService.moveDown();
+		} else {
+
 		}
 		if (score){
 			this._store.dispatch({type: 'ADD_SCORE', payload: {score: score}});

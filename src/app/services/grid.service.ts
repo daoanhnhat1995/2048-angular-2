@@ -48,7 +48,6 @@ export class GridService {
         this.setTileAt(emptyList[randPos].x,emptyList[randPos].y, 2);
     }
 
-
     public moveDown(): number {
         let score = 0;
         for (let i = 0; i < 4; i++){
@@ -59,7 +58,10 @@ export class GridService {
                 while (bottom >= i && !this.tiles[bottom].val){
                     bottom -= 4;
                 }
-                if (bottom < i){
+                if (bottom == i){
+                    const tmpVal = this.tiles[bottom].val;
+                    this.tiles[bottom].setVal(0);
+                    this.tiles[merge].setVal(tmpVal);
                     break;
                 }
                 top = bottom - 4;
@@ -67,9 +69,11 @@ export class GridService {
                     top -= 4;
                 }
                 if ( top < i ) {
-                    const tmpVal = this.tiles[bottom].val;
-                    this.tiles[bottom].setVal(0);
-                    this.tiles[merge].setVal(tmpVal);
+									  if (bottom >= i){
+                    	const tmpVal = this.tiles[bottom].val;
+                    	this.tiles[bottom].setVal(0);
+                    	this.tiles[merge].setVal(tmpVal);
+										}
                     break;
                 }
                 const topVal = this.tiles[top].val;
@@ -110,15 +114,23 @@ export class GridService {
                 while (top <= i+12 && !this.tiles[top].val){
                     top += 4;
                 }
-                if (top > i + 12) break;
+                if (top == i + 12) {
+                    const tmp = this.tiles[top].val;
+                    this.tiles[top].setVal(0);
+                    this.tiles[merge].setVal(tmp);
+										break;
+								}
                 bottom = top + 4;
                 while ( bottom <= i + 12 && !this.tiles[bottom].val){
                     bottom += 4;
                 }
                 if ( bottom > i + 12){
+									if (top <= i + 12){
                     const tmp = this.tiles[top].val;
                     this.tiles[top].setVal(0);
                     this.tiles[merge].setVal(tmp);
+
+									}
                     break;
                 }
                 const topVal = this.tiles[top].val;
@@ -152,22 +164,28 @@ export class GridService {
             let right = base + 3;
             let left = right - 1;
             let merge = right;
-            while ( left < right && left >= base){
+            while ( left < right ){
                 while (right >= base && !this.tiles[right].val){
                     right--;
                 }
-                if ( right < base){
+                if ( right == base){
+                    const tmp = this.tiles[right].val;
+                    this.tiles[right].setVal(0);
+                    this.tiles[merge].setVal(tmp);
                     break;
                 } 
 
                 left = right - 1;
+								console.log(left,right,base);
                 while ( left >= base && !this.tiles[left].val){
                     left --;
                 }
                 if ( left < base) {
+									if(right > base){
                     const tmp = this.tiles[right].val;
                     this.tiles[right].setVal(0);
                     this.tiles[merge].setVal(tmp);
+									}
                     break;
                 }
                 const leftVal = this.tiles[left].val;
@@ -201,11 +219,14 @@ export class GridService {
             let left = base;
             let right = base + 1;
             let merge = left;
-            while ( left < right && right < base + 4){
+            while ( left < right ){
                 while ( left < base + 4 && !this.tiles[left].val){
                     left++;
                 }
-                if (left == base+4) {
+                if (left == base+3) {
+                    const tmp = this.tiles[left].val;
+                    this.tiles[left].setVal(0);
+                    this.tiles[merge].setVal(tmp);
                     break;
                 }
 
@@ -213,10 +234,13 @@ export class GridService {
                 while ( right < base + 4 && !this.tiles[right].val){
                     right ++;
                 }
-                if ( right == base+4){
+                if ( right >=  base+4){
+									if (left < base + 4){
+
                     const tmp = this.tiles[left].val;
                     this.tiles[left].setVal(0);
                     this.tiles[merge].setVal(tmp);
+									}
                     break;
                 }
                 const leftVal = this.tiles[left].val;
