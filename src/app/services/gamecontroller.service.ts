@@ -30,7 +30,8 @@ export class GameControllerService {
         //     state('tile31', style({ top: 115, left: 345 })),
         //     transition('* => *', animate('.25s'))
         // ];
-        list.push(transition('* => *', animate('.25s')));
+        // list.push(transition('* => pop', animate('.25s')));
+        list.push(transition('* => *', animate('2s')));
         return list;
     }
 

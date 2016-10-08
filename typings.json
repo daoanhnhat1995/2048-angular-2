@@ -6,7 +6,6 @@
     "node": "registry:dt/node#6.0.0+20160909174046"
   },
   "files": [
-    "typings/index.d.ts",
-    "typings/globals/velocity-animate/index.d.ts"
+    "typings/index.d.ts"
   ]
 }

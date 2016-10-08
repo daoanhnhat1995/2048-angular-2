@@ -1,4 +1,3 @@
-/// <reference path="../../typings/globals/velocity-animate/index.d.ts" />
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
 export class Tile {
     x: number;
@@ -16,7 +15,7 @@ export class Tile {
         return this;
     }
 
-    public setAnimation(fromTileLoc: number, toTileLoc: number): Tile {         
+    public setAnimation(fromTileLoc: number, toTileLoc: number): Tile {
         let scalar = 115;
 
         let from_x = Math.floor(fromTileLoc / 4);
@@ -27,15 +26,9 @@ export class Tile {
 
         let toTile = document.getElementById(to_x + '_' + to_y);
         let fromTile = document.getElementById(from_x + '_' + from_y);
-        
-        $(toTile).animate({ 'z-index': 10 }, 1);
+        console.log(toTile, fromTile);
 
-
-        $(toTile).animate({ 'z-index': 10 }, 1)
-
-        $(toTile).delay(125).animate( { 'scale': .7 }, 0, function () {
-                $(toTile).animate({ 'scale': 1 }, { duration: 125 })
-            });
+        $(toTile).css('z-index' , '10');
 
         //vector diff
         let diff_x = to_x - from_x;
@@ -53,12 +46,17 @@ export class Tile {
         let moveTile = {};
         moveTile[direction] = ((diff_x || diff_y) * scalar) + 'px';
 
-        $(fromTile).animate( moveTile, 250);
+        // $(toTile).delay(125).animate({ 'scale': .7 }, 0, function () {
+        //     $(toTile).animate({ 'scale': 1 }, { duration: 125 })
+        // });
+        // $(fromTile).animate(moveTile, 250);
+        this.animatedState = 'tile22'// + diff_x + diff_y;
         return this;
     }
 
     public setVal(newVal: number): Tile {
         this.val = newVal;
+        this.setColor();
         return this;
     }
 

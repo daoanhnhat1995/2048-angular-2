@@ -20,11 +20,11 @@ import {GameControllerService} from '../services/gamecontroller.service';
 		GameControllerService.makeAnimations()
 		),
 		trigger('enterAnimation', [
-			state('in', style({ transform: 'scale(1,1)' }))
-			// transition('void => *', [
-			// 	style({ transform: 'scale(0,0)' }),
-			// 	animate(300)
-			// ])
+			state('in', style({ transform: 'scale(1,1)' })),
+			transition('void => *', [
+				style({ transform: 'scale(0,0)' }),
+				animate(300)
+			])
 		]),
 	]
 })
