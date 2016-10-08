@@ -227,6 +227,7 @@ export class GridService {
                     const tmp = this.tiles[left].val;
                     this.tiles[left].setVal(0);
                     this.tiles[merge].setVal(tmp);
+                    this.tiles[merge].setAnimation(3, 1);
                     break;
                 }
 
