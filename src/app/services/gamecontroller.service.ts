@@ -14,8 +14,8 @@ export class GameControllerService {
     public static makeAnimations(): Array<AnimationMetadata> {
         let list: Array<AnimationMetadata> = [];
 
-        for(var i = 0; i < 3; i++){
-                for(var j = 0; j < 3; j++){
+        for(var i = -3; i <= 3; i++){
+                for(var j = -3; j <= 3; j++){
                     list.push(
                             state(
                                 'tile'+ i.toString() + j.toString(),

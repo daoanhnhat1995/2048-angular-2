@@ -1,6 +1,7 @@
 <span 
 	id="{{tile.x}}_{{tile.y}}" 
     class="tile {{tile.color}}" 
+    (@movementSlides.done)="postAnimationHook($event)"
     [@movementSlides]="tile.animatedState" 
     @enterAnimation>
     <span class="tileContent" [style.font-size]="fontSize">{{tile.val > 0  ? tile.val : ""}}</span>

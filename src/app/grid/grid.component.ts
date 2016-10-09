@@ -22,6 +22,5 @@ export class GridComponent {
 	@Input() tiles: Tile[];
 
 	constructor() { }
-	// Create empty board
 	
 }

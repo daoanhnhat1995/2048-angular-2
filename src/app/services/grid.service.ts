@@ -225,10 +225,16 @@ export class GridService {
                 }
                 if (left == base + 3) {
                     const tmp = this.tiles[left].val;
-                    this.tiles[left].setVal(0);
-
-                    this.tiles[merge].setVal(tmp);
-                    this.tiles[merge].setAnimation(left, merge);
+                    console.log('in left: ', left, right, merge, tmp, base);
+                    
+                    if(left != merge){
+                        this.tiles[left].setAnimation(left, merge)
+                            .setNewVal(tmp);
+                    }
+                    else{
+                        this.tiles[left].setVal(0);
+                        this.tiles[merge].setVal(tmp);
+                    }
                     break;
                 }
 
@@ -240,9 +246,16 @@ export class GridService {
                     if (left < base + 4) {
 
                         const tmp = this.tiles[left].val;
-                        this.tiles[left].setVal(0);
-                        this.tiles[merge].setVal(tmp);
-                        this.tiles[merge].setAnimation(left, merge);
+                        
+                        console.log('in right: ', left, right, merge, tmp, base);
+                        if(left != merge){
+                            this.tiles[left].setAnimation(left, merge)
+                            .setNewVal(tmp);
+                        }
+                        else{
+                            this.tiles[left].setVal(0);
+                            this.tiles[merge].setVal(tmp);
+                        }
                     }
                     break;
                 }
@@ -252,17 +265,23 @@ export class GridService {
                 if (leftVal == rightVal) {
                     this.tiles[left].setVal(0);
                     this.tiles[right].setVal(0);
-                    this.tiles[merge].setVal(2 * leftVal);
-                    this.tiles[merge].setAnimation(left, merge);
-                    //this.tiles[merge].setAnimation(right, merge);
+                    console.log('in last left: ', left, right, merge, leftVal, base);
+                    if(right != merge){
+                        this.tiles[right].setAnimation(right, merge)
+                            .setNewVal(2 * leftVal);
+                    }
+                    else{
+                        this.tiles[merge].setVal(2 * leftVal);
+                    } 
                     score += leftVal * 2;
                     left = right + 1;
                     right = left + 1;
                     merge++;
                 } else {
                     this.tiles[left].setVal(0);
+                    //this is a piece that always lines the left side of the grid, no animation required.
+                    //this.tiles[merge].setAnimation(left, merge);
                     this.tiles[merge].setVal(leftVal);
-                    this.tiles[merge].setAnimation(left, merge);
                     left = right;
                     right = left + 1;
                     merge++;
