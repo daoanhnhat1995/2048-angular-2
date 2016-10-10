@@ -28,7 +28,9 @@ export class GridService {
         this.tiles[x * this.size + y].setVal(newVal);
     }
 
-
+    public setValue(tilePos: number, tileVal: number){
+         this.tiles[tilePos].setVal(tileVal);
+    }
 
     public initBoard(): void {
         let randPosX: number = Math.floor(Math.random() * 16);

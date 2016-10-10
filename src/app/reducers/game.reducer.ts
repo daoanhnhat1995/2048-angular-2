@@ -30,10 +30,11 @@ let updateScore = (state: IGame, newVal: number): IGame => {
     return Object.assign({}, state, { currentScore: newScore});
 };
 let updateValue = (state: IGame, newTiles: ITile[]): IGame => {
-    
-    return Object.assign({}, state, { tiles: newTiles});
+    console.log('inside updateValue reducer', newTiles, state);
+    return Object.assign( state, { tiles: newTiles});
 };
 export const gameReducer: ActionReducer<any> = (state = initialState, action: Action) => {
+    console.log(state , action)
    switch(action.type){
        case 'NEW_GAME':
             return newGame(state, action.payload.tiles);
