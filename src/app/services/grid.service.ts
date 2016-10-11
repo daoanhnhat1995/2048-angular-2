@@ -19,6 +19,16 @@ export class GridService {
         }
     }
 
+    public updateTiles(newFromPos: number, newToPos: number, newVal: number): void {
+        console.log('pretiles', this.tiles)
+        let mTiles = this.tiles.filter( t =>  t.newFromPos != undefined && t.newToPos != undefined );
+        console.log('the mTiles',  mTiles);
+        mTiles.forEach((tile) => {
+            console.log("Set tile at " + tile.newFromPos + tile.newVal);
+            //this.tiles[newFromPos].setVal(0);
+            this.tiles[newToPos].setVal(tile.newVal);
+        });
+    }
 
     public getEmptyCells(): Tile[] {
         return this.tiles.filter(t => t.val == 0);

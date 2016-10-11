@@ -1,9 +1,11 @@
 <div class="grid-container">
 	<!--<div class="grid-content">-->
-		<!--<div >-->
-			<tile style="height:100px;width:100px" 
-				[tile]='tile'
-				*ngFor="let tile of tiles"> </tile>
-		<!--</div>
+	<!--<div >-->
+	<div *ngFor="let tile of tiles" 
+		[style.left]="((tile.y *100) + ((tile.y+1) *15))+ 'px'" 
+		[style.top]="(tile.x *106 + (15*(tile.x+1))) + 'px'" 
+		style="background-color: rgba(238, 228, 218, 0.34902); border-radius: 3%; position:absolute; height:100px;width:100px; display:inline-flex"></div>
+	<tile style="z-index:5" [tile]='tile' *ngFor="let tile of tiles"> </tile>
+	<!--</div>
 	</div>-->
 </div>

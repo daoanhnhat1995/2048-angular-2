@@ -60,24 +60,8 @@ export class GameService {
 
 	postAnimationTileUpdates(newFromPos: number, newToPos: number, newVal: number): void{
 		console.log('before: ',this._gService.tiles, newFromPos, newToPos, newVal)
-	
-		//.map(next => 	alert('tilexmesy' ))
-		this._gService.setValue(newFromPos, 0);
-		this._gService.setValue(newToPos, newVal);
-			//this._gService.tiles[newFromPos].setVal(0);
-			//this._gService.tiles[newToPos].setVal(newVal);
-			//this._store.dispatch({type: 'SET_VALUE', payload: { tiles: this._gService.tiles}});
-				this.tiles.forEach(a =>
-				a = this._gService.tiles
-				).then(function(){
-					console.log(this.tiles)
-					this.tiles.forEach(a =>
-						this._store.dispatch({type: 'SET_VALUE', payload: { tiles: a}})
-					);
-				
-				});
-				
-			console.log('after: ',this._gService.tiles, newFromPos, newToPos, newVal)
+			this._gService.tiles[newFromPos].setVal(0);
+			this._gService.tiles[newToPos].setVal(newVal);
 	}
 
 }

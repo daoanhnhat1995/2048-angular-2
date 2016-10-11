@@ -7,21 +7,22 @@ import {
 	style,
 	transition,
 	AnimationTransitionEvent,
-	animate
+	animate,
+	NgZone
 } from '@angular/core';
 import { Tile } from '../tile';
 import { GameControllerService } from '../services/gamecontroller.service';
 import { GridComponent } from '../grid/grid.component';
 import { GameService } from '../services/game.service';
-import {GridService} from '../services/grid.service'
+import { GridService } from '../services/grid.service'
 
 @Component({
 	selector: 'tile',
 	templateUrl: 'tile.component.html',
 	styleUrls: ['tile.component.css'],
 	animations: [
-		trigger('movementSlides', 
-		GameControllerService.makeAnimations()
+		trigger('movementSlides',
+			GameControllerService.makeAnimations()
 		),
 		trigger('enterAnimation', [
 			state('in', style({ transform: 'scale(1,1)' })),
@@ -36,7 +37,7 @@ export class TileComponent implements OnInit {
 	@Input() tile: Tile;
 	fontSize: string = "ja";
 
-	constructor(private game: GameService) {
+	constructor(private game: GameService, private _ngZone: NgZone) {
 	}
 	ngOnInit() {
 		if (this.tile.val.toString().length < 3) {
@@ -50,11 +51,14 @@ export class TileComponent implements OnInit {
 		}
 	}
 
-	public postAnimationHook(e:AnimationTransitionEvent):void{
-		if(e.toState !== undefined){
-			console.log(e);
-			
-			this.game.postAnimationTileUpdates(this.tile.newFromPos, this.tile.newToPos, this.tile.newVal);
+	public postAnimationHook(e: AnimationTransitionEvent): void {
+		if (e.toState !== undefined) {
+			this._ngZone.run(() => {
+				console.log(e);
+
+				this.game.postAnimationTileUpdates(this.tile.newFromPos, this.tile.newToPos, this.tile.newVal);
+			})
+
 		}
 		return;
 	}

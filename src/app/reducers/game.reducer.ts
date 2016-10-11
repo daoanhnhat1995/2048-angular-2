@@ -30,8 +30,11 @@ let updateScore = (state: IGame, newVal: number): IGame => {
     return Object.assign({}, state, { currentScore: newScore});
 };
 let updateValue = (state: IGame, newTiles: ITile[]): IGame => {
+    console.log(state.tiles)
     console.log('inside updateValue reducer', newTiles, state);
-    return Object.assign( state, { tiles: newTiles});
+    return Object.assign({}, state, { tiles: newTiles, 
+        bestScore: state.bestScore,
+        currentScore: state.currentScore});
 };
 export const gameReducer: ActionReducer<any> = (state = initialState, action: Action) => {
     console.log(state , action)
