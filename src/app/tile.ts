@@ -1,4 +1,6 @@
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
+import { GridService } from './services/grid.service';
+
 export class Tile {
     x: number;
     y: number;
@@ -8,6 +10,7 @@ export class Tile {
     newToPos: number;
     val: number;
     animatedState: string;
+
 
     constructor(X: number, Y: number, Val: number) {
         this.x = X, this.y = Y, this.val = Val;
@@ -19,6 +22,14 @@ export class Tile {
     }
 
     public setAnimation(fromTileLoc: number, toTileLoc: number): Tile {
+        if(GridService.getAnimationCounter() == 0){
+            GridService.incrementAnimationCounter();
+            GridService.applyNewPromise();
+        }
+        else{
+            GridService.incrementAnimationCounter();
+        }
+
         let scalar = 115;
 
         let from_x = Math.floor(fromTileLoc / 4);
@@ -31,28 +42,12 @@ export class Tile {
         let fromTile = document.getElementById(from_x + '_' + from_y);
         console.log(toTile, fromTile);
 
-        $(toTile).css('z-index' , '10');
+        $(toTile).css('z-index', '10');
 
         //vector diff
         let diff_x = to_x - from_x;
         let diff_y = to_y - from_y;
 
-        //determine tile direction
-        // let direction;
-        // if (diff_x != 0) {
-        //     direction = 'top';
-        // }
-        // else if (diff_y != 0) {
-        //     direction = 'left';
-        // }
-
-        // let moveTile = {};
-        // moveTile[direction] = ((diff_x || diff_y) * scalar) + 'px';
-
-        // $(toTile).delay(125).animate({ 'scale': .7 }, 0, function () {
-        //     $(toTile).animate({ 'scale': 1 }, { duration: 125 })
-        // });
-        // $(fromTile).animate(moveTile, 250);
         this.animatedState = 'tile' + diff_x + diff_y;
         this.newFromPos = fromTileLoc;
         this.newToPos = toTileLoc;
@@ -65,7 +60,7 @@ export class Tile {
         return this;
     }
 
-     public setNewVal(newVal: number): Tile {
+    public setNewVal(newVal: number): Tile {
         this.newVal = newVal;
         return this;
     }

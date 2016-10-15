@@ -1,6 +1,7 @@
 <span 
 	id="{{tile.x}}_{{tile.y}}" 
     class="tile {{tile.color}}" 
+    (@movementSlides.start)="animationStarted($event)"
     (@movementSlides.done)="postAnimationHook($event)"
     [@movementSlides]="tile.animatedState" 
     @enterAnimation>

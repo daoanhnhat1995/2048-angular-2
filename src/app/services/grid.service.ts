@@ -1,13 +1,49 @@
 import { Injectable } from "@angular/core";
 import { Tile } from './../tile';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject'
+
 @Injectable()
 export class GridService {
     public tiles: Tile[];
     public size: number = 4;
+    private static animationCounter: number = 0;
+    public static waitForAnimations: Promise<any>;
+
     constructor() {
         this.tiles = [];
         this.buildEmptyBoard();
         console.log(this.tiles);
+    }
+
+    public static getAnimationCounter(): number{
+        return this.animationCounter;
+    }
+    public static incrementAnimationCounter(): void{
+        this.animationCounter++;
+        //console.log('increment done', this.animationCounter)
+    }
+
+    public static decrementAnimationCounter(): void{
+        this.animationCounter--;
+        //console.log('decrement done',  this.animationCounter)
+    }
+
+    public static applyNewPromise(): void{
+        this.waitForAnimations = new Promise(function (r) {
+
+        setInterval(function () {
+            if (GridService.animationCounter == 0) {
+                r('done with animations')
+            }
+            // else {
+            //     console.log(GridService.animationCounter)
+            // }
+
+
+        }, 150)
+
+    })
     }
 
     public buildEmptyBoard(): void {
@@ -275,16 +311,17 @@ export class GridService {
                 const rightVal = this.tiles[right].val;
 
                 if (leftVal == rightVal) {
-                    this.tiles[left].setVal(0);
-                    this.tiles[right].setVal(0);
-                    console.log('in last left: ', left, right, merge, leftVal, base);
-                    if(right != merge){
+                    //this.tiles[left].setVal(0);
+                    //this.tiles[right].setVal(0);
+                    //console.log('in last left: ', left, right, merge, leftVal, base);
+                    //if(right != merge){
                         this.tiles[right].setAnimation(right, merge)
                             .setNewVal(2 * leftVal);
-                    }
-                    else{
-                        this.tiles[merge].setVal(2 * leftVal);
-                    } 
+                    // }
+                    // else{
+                    //     this.tiles[left].setVal(0);
+                    //     this.tiles[merge].setVal(2 * leftVal);
+                    // } 
                     score += leftVal * 2;
                     left = right + 1;
                     right = left + 1;

@@ -54,12 +54,17 @@ export class TileComponent implements OnInit {
 	public postAnimationHook(e: AnimationTransitionEvent): void {
 		if (e.toState !== undefined) {
 			this._ngZone.run(() => {
-				console.log(e);
+				//console.log(e);
 
 				this.game.postAnimationTileUpdates(this.tile.newFromPos, this.tile.newToPos, this.tile.newVal);
 			})
 
 		}
+		return;
+	}
+
+	public animationStarted(e: AnimationTransitionEvent): void{
+		//console.log('animation started' + this.tile.x + this.tile.y, e)
 		return;
 	}
 }

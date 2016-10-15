@@ -39,6 +39,8 @@ export class GameService {
 	}
 	merge(key: string): void{
 		let score = 0;
+		let scope = this;
+
 		if(key == "LEFT"){
 			score = this._gService.moveLeft();
 		} else if ( key == "RIGHT"){
@@ -54,14 +56,20 @@ export class GameService {
 			this._store.dispatch({type: 'ADD_SCORE', payload: {score: score}});
 		}
 		if (this._gService.getEmptyCells().length){
-			this._gService.fillRandom();
+			GridService.waitForAnimations.then(function(data){
+				console.log(data)
+				scope._gService.fillRandom();
+			})
+			
 		}
 	}
 
 	postAnimationTileUpdates(newFromPos: number, newToPos: number, newVal: number): void{
-		console.log('before: ',this._gService.tiles, newFromPos, newToPos, newVal)
+		//console.log('before: ',this._gService.tiles, newFromPos, newToPos, newVal)
+
 			this._gService.tiles[newFromPos].setVal(0);
 			this._gService.tiles[newToPos].setVal(newVal);
+			GridService.decrementAnimationCounter();
 	}
 
 }
