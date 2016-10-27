@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { GridService } from './grid.service';
 import { ITile } from './../interfaces/ITile';
+import { Tile } from './../tile';
 import { IGame } from './../interfaces/IGame';
 import { DIRECTIONS } from './../enums/directions';
 import 'rxjs/add/operator/map';
@@ -67,7 +68,8 @@ export class GameService {
 	postAnimationTileUpdates(newFromPos: number, newToPos: number, newVal: number): void{
 		//console.log('before: ',this._gService.tiles, newFromPos, newToPos, newVal)
 
-			this._gService.tiles[newFromPos].setVal(0);
+			let fromPos  = this._gService.tiles[newFromPos];
+			this._gService.tiles[newFromPos] = new Tile(fromPos.x,fromPos.y,0);
 			this._gService.tiles[newToPos].setVal(newVal);
 			GridService.decrementAnimationCounter();
 	}
