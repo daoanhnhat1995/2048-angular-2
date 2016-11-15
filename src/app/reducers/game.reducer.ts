@@ -1,6 +1,5 @@
 import { Action, ActionReducer } from '@ngrx/store';
-import { IGame } from './../interfaces/IGame';
-import { ITile } from './../interfaces/ITile';
+import { IGame, ITile } from './../interfaces';
 
 let initialState: IGame ={
   currentScore: 0,

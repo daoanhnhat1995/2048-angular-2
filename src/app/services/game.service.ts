@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { GridService } from './grid.service';
-import { ITile } from './../interfaces/ITile';
 import { Tile } from './../tile';
-import { IGame } from './../interfaces/IGame';
+import { IGame, ITile } from './../interfaces';
 import { DIRECTIONS } from './../enums/directions';
 import 'rxjs/add/operator/map';
 
