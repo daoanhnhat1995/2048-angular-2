@@ -9,8 +9,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GameService {
-	public tiles: Observable<ITile[]>;
-	public currentScore: Observable<number>;
+	public tiles: Observable<ITile[]>; public currentScore: Observable<number>;
 	public bestScore: Observable<number>;
 	public isGameOver: Observable<boolean>;
 
@@ -56,21 +55,9 @@ export class GameService {
 			this._store.dispatch({type: 'ADD_SCORE', payload: {score: score}});
 		}
 		if (this._gService.getEmptyCells().length){
-			GridService.waitForAnimations.then(function(data){
-				console.log(data)
-				scope._gService.fillRandom();
-			})
-			
+			scope._gService.fillRandom();
 		}
 	}
 
-	postAnimationTileUpdates(newFromPos: number, newToPos: number, newVal: number): void{
-		//console.log('before: ',this._gService.tiles, newFromPos, newToPos, newVal)
-
-			let fromPos  = this._gService.tiles[newFromPos];
-			this._gService.tiles[newFromPos] = new Tile(fromPos.x,fromPos.y,0);
-			this._gService.tiles[newToPos].setVal(newVal);
-			GridService.decrementAnimationCounter();
-	}
 
 }

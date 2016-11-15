@@ -7,8 +7,6 @@ import { Subject } from 'rxjs/Subject'
 export class GridService {
     public tiles: Tile[];
     public size: number = 4;
-    private static animationCounter: number = 0;
-    public static waitForAnimations: Promise<any>;
 
     constructor() {
         this.tiles = [];
@@ -16,35 +14,6 @@ export class GridService {
         console.log(this.tiles);
     }
 
-    public static getAnimationCounter(): number{
-        return this.animationCounter;
-    }
-    public static incrementAnimationCounter(): void{
-        this.animationCounter++;
-        //console.log('increment done', this.animationCounter)
-    }
-
-    public static decrementAnimationCounter(): void{
-        this.animationCounter--;
-        //console.log('decrement done',  this.animationCounter)
-    }
-
-    public static applyNewPromise(): void{
-        this.waitForAnimations = new Promise(function (r) {
-
-        setInterval(function () {
-            if (GridService.animationCounter == 0) {
-                r('done with animations')
-            }
-            // else {
-            //     console.log(GridService.animationCounter)
-            // }
-
-
-        }, 150)
-
-    })
-    }
 
     public buildEmptyBoard(): void {
         this.tiles = [];
@@ -55,16 +24,6 @@ export class GridService {
         }
     }
 
-    public updateTiles(newFromPos: number, newToPos: number, newVal: number): void {
-        console.log('pretiles', this.tiles)
-        let mTiles = this.tiles.filter( t =>  t.newFromPos != undefined && t.newToPos != undefined );
-        console.log('the mTiles',  mTiles);
-        mTiles.forEach((tile) => {
-            console.log("Set tile at " + tile.newFromPos + tile.newVal);
-            //this.tiles[newFromPos].setVal(0);
-            this.tiles[newToPos].setVal(tile.newVal);
-        });
-    }
 
     public getEmptyCells(): Tile[] {
         return this.tiles.filter(t => t.val == 0);
@@ -273,16 +232,8 @@ export class GridService {
                 }
                 if (left == base + 3) {
                     const tmp = this.tiles[left].val;
-                    console.log('in left: ', left, right, merge, tmp, base);
-                    
-                    if(left != merge){
-                        this.tiles[left].setAnimation(left, merge)
-                            .setNewVal(tmp);
-                    }
-                    else{
-                        this.tiles[left].setVal(0);
-                        this.tiles[merge].setVal(tmp);
-                    }
+					this.tiles[left].setVal(0);
+					this.tiles[merge].setVal(tmp);
                     break;
                 }
 
@@ -294,16 +245,8 @@ export class GridService {
                     if (left < base + 4) {
 
                         const tmp = this.tiles[left].val;
-                        
-                        console.log('in right: ', left, right, merge, tmp, base);
-                        if(left != merge){
-                            this.tiles[left].setAnimation(left, merge)
-                            .setNewVal(tmp);
-                        }
-                        else{
-                            this.tiles[left].setVal(0);
-                            this.tiles[merge].setVal(tmp);
-                        }
+						this.tiles[left].setVal(0);
+						this.tiles[merge].setVal(tmp);
                     }
                     break;
                 }
@@ -311,25 +254,16 @@ export class GridService {
                 const rightVal = this.tiles[right].val;
 
                 if (leftVal == rightVal) {
-                    //this.tiles[left].setVal(0);
-                    //this.tiles[right].setVal(0);
-                    //console.log('in last left: ', left, right, merge, leftVal, base);
-                    //if(right != merge){
-                        this.tiles[right].setAnimation(right, merge)
-                            .setNewVal(2 * leftVal);
-                    // }
-                    // else{
-                    //     this.tiles[left].setVal(0);
-                    //     this.tiles[merge].setVal(2 * leftVal);
-                    // } 
+                    this.tiles[left].setVal(0);
+                    this.tiles[right].setVal(0);
+                    this.tiles[left].setVal(0);
+                    this.tiles[merge].setVal(2 * leftVal);
                     score += leftVal * 2;
                     left = right + 1;
                     right = left + 1;
                     merge++;
                 } else {
                     this.tiles[left].setVal(0);
-                    //this is a piece that always lines the left side of the grid, no animation required.
-                    //this.tiles[merge].setAnimation(left, merge);
                     this.tiles[merge].setVal(leftVal);
                     left = right;
                     right = left + 1;

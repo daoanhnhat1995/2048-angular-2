@@ -21,9 +21,6 @@ import { GridService } from '../services/grid.service'
 	templateUrl: 'tile.component.html',
 	styleUrls: ['tile.component.css'],
 	animations: [
-		trigger('movementSlides',
-			GameControllerService.makeAnimations()
-		),
 		trigger('enterAnimation', [
 			state('in', style({ transform: 'scale(1,1)' })),
 			transition('void => *', [
@@ -51,20 +48,4 @@ export class TileComponent implements OnInit {
 		}
 	}
 
-	public postAnimationHook(e: AnimationTransitionEvent): void {
-		if (e.toState !== undefined) {
-			this._ngZone.run(() => {
-				//console.log(e);
-
-				this.game.postAnimationTileUpdates(this.tile.newFromPos, this.tile.newToPos, this.tile.newVal);
-			})
-
-		}
-		return;
-	}
-
-	public animationStarted(e: AnimationTransitionEvent): void{
-		//console.log('animation started' + this.tile.x + this.tile.y, e)
-		return;
-	}
 }
